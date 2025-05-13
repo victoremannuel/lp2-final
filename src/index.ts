@@ -1,11 +1,14 @@
 import readline from 'readline-sync';
 import { Livro, CategoriaLivro } from './models/Livro';
 import { Usuario, TipoUsuario } from './models/Usuario';
+import { Emprestimo, StatusEmprestimo } from './models/Emprestimo';
 import { LivroRepositorio } from './services/LivroRepositorio';
 import { UsuarioRepositorio } from './services/UsuarioRepositorio';
+import { EmprestimoRepositorio } from './services/EmprestimoRepositorio';
 
 const livroRepo = new LivroRepositorio();
 const usuarioRepo = new UsuarioRepositorio();
+const emprestimoRepo = new EmprestimoRepositorio();
 
 function cadastrarLivro(): void {
   console.log('== Cadastro de Livro ==');
@@ -60,6 +63,59 @@ function cadastrarUsuario(): void {
   }
 }
 
+function realizarEmprestimo(): void {
+  console.log('== Realizar Empréstimo ==');
+  const id = Number(readline.question('ID do Empréstimo: '));
+  const idLivro = Number(readline.question('ID do Livro: '));
+  const idUsuario = Number(readline.question('ID do Usuário: '));
+
+  const livro = livroRepo.buscarPorId(idLivro);
+  const usuario = usuarioRepo.buscarPorId(idUsuario);
+
+  if (!livro) {
+    console.log('Livro não encontrado.');
+    return;
+  }
+  if (!usuario) {
+    console.log('Usuário não encontrado.');
+    return;
+  }
+
+  const dataEmprestimo = new Date();
+  const dataDevolucao = null;
+  const status = StatusEmprestimo.ATIVO;
+
+  try {
+    const emprestimo = new Emprestimo(id, livro, usuario, dataEmprestimo, dataDevolucao, status);
+    emprestimoRepo.criar(emprestimo);
+    console.log('Empréstimo registrado com sucesso!');
+  } catch (error: any) {
+    console.log(`Erro ao registrar empréstimo: ${error.message}`);
+  }
+}
+
+function realizarDevolucao(): void {
+  console.log('== Realizar Devolução ==');
+  const id = Number(readline.question('ID do Empréstimo: '));
+
+  const emprestimo = emprestimoRepo.buscarPorId(id);
+  if (!emprestimo) {
+    console.log('Empréstimo não encontrado.');
+    return;
+  }
+
+  if (emprestimo.status !== StatusEmprestimo.ATIVO) {
+    console.log('Empréstimo já foi devolvido ou está em outro status.');
+    return;
+  }
+
+  emprestimo.status = StatusEmprestimo.DEVOLVIDO;
+  emprestimo.dataDevolucao = new Date();
+  emprestimoRepo.atualizar(id, emprestimo);
+
+  console.log('Livro devolvido com sucesso!');
+}
+
 function main() {
   let option = '';
   while (option !== '0') {
@@ -82,7 +138,7 @@ function main() {
         cadastrarUsuario();
         break;
       case '3':
-        console.log('-> Realizar Empréstimo');
+        realizarEmprestimo();
         break;
       case '4':
         console.log('-> Realizar Devolução');
