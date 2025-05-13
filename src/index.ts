@@ -137,7 +137,7 @@ function backupDados(): void {
     usuarios: usuarioRepo.listar(),
     emprestimos: emprestimoRepo.listar()
   };
-  const caminho = path.join(__dirname, 'backup.json');
+  const caminho = path.join(__dirname, 'database/backup.json');
   try {
     fs.writeFileSync(caminho, JSON.stringify(backup, null, 2), 'utf-8');
     console.log(`Backup realizado com sucesso em: ${caminho}`);
@@ -147,7 +147,7 @@ function backupDados(): void {
 }
 
 function restaurarBackup(): void {
-  const caminho = path.join(__dirname, 'backup.json');
+  const caminho = path.join(__dirname, 'database/backup.json');
   try {
     if (!fs.existsSync(caminho)) {
       console.log('Arquivo de backup não encontrado.');
