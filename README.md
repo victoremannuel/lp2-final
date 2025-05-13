@@ -11,6 +11,6 @@ npm i @types/readline-sync
 ```
 
 Para compilar todos os arquivos ts em js, execute no terminal:
-```npx tsc```
+```npx tsc```<br>
 Para executar um arquivo em específico, execute no terminal:
 ```node ./pasta/arquivo.js```
