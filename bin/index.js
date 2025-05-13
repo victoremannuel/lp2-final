@@ -126,7 +126,7 @@ function backupDados() {
         usuarios: usuarioRepo.listar(),
         emprestimos: emprestimoRepo.listar()
     };
-    const caminho = path_1.default.join(__dirname, 'backup.json');
+    const caminho = path_1.default.join(__dirname, 'database/backup.json');
     try {
         fs_1.default.writeFileSync(caminho, JSON.stringify(backup, null, 2), 'utf-8');
         console.log(`Backup realizado com sucesso em: ${caminho}`);
@@ -136,7 +136,7 @@ function backupDados() {
     }
 }
 function restaurarBackup() {
-    const caminho = path_1.default.join(__dirname, 'backup.json');
+    const caminho = path_1.default.join(__dirname, 'database/backup.json');
     try {
         if (!fs_1.default.existsSync(caminho)) {
             console.log('Arquivo de backup não encontrado.');
