@@ -1,4 +1,6 @@
 import readline from 'readline-sync';
+import fs from 'fs';
+import path from 'path';
 import { Livro, CategoriaLivro } from './models/Livro';
 import { Usuario, TipoUsuario } from './models/Usuario';
 import { Emprestimo, StatusEmprestimo } from './models/Emprestimo';
@@ -129,6 +131,56 @@ function consultarAcervo(): void {
   }
 }
 
+function backupDados(): void {
+  const backup = {
+    livros: livroRepo.listar(),
+    usuarios: usuarioRepo.listar(),
+    emprestimos: emprestimoRepo.listar()
+  };
+  const caminho = path.join(__dirname, 'backup.json');
+  try {
+    fs.writeFileSync(caminho, JSON.stringify(backup, null, 2), 'utf-8');
+    console.log(`Backup realizado com sucesso em: ${caminho}`);
+  } catch (error: any) {
+    console.error(`Erro ao salvar backup: ${error.message}`);
+  }
+}
+
+function restaurarBackup(): void {
+  const caminho = path.join(__dirname, 'backup.json');
+  try {
+    if (!fs.existsSync(caminho)) {
+      console.log('Arquivo de backup não encontrado.');
+      return;
+    }
+    const conteudo = fs.readFileSync(caminho, 'utf-8');
+    const backup = JSON.parse(conteudo);
+
+    backup.livros.forEach((l: any) => {
+      const livro = new Livro(l.id, l.titulo, l.autor, l.ano, l.categoria);
+      livroRepo.criar(livro);
+    });
+
+    backup.usuarios.forEach((u: any) => {
+      const usuario = new Usuario(u.id, u.nome, u.matricula, u.tipo);
+      usuarioRepo.criar(usuario);
+    });
+
+    backup.emprestimos.forEach((e: any) => {
+      const livro = livroRepo.buscarPorId(e.livro.id);
+      const usuario = usuarioRepo.buscarPorId(e.usuario.id);
+      if (livro && usuario) {
+        const emprestimo = new Emprestimo(e.id, livro, usuario, new Date(e.dataEmprestimo), e.dataDevolucao ? new Date(e.dataDevolucao) : null, e.status);
+        emprestimoRepo.criar(emprestimo);
+      }
+    });
+
+    console.log('Backup restaurado com sucesso!');
+  } catch (error: any) {
+    console.error(`Erro ao restaurar backup: ${error.message}`);
+  }
+}
+
 function main() {
   let option = '';
   while (option !== '0') {
@@ -140,6 +192,7 @@ function main() {
     console.log('4 - Realizar Devolução');
     console.log('5 - Consultar Acervo');
     console.log('6 - Backup de Dados');
+    console.log('7 - Restaurar Backup');
     console.log('0 - Sair');
     option = readline.question('Escolha uma opcao: ');
 
@@ -160,7 +213,10 @@ function main() {
         consultarAcervo();
         break;
       case '6':
-        console.log('-> Backup de Dados');
+        backupDados();
+        break;
+      case '7':
+        restaurarBackup();
         break;
       case '0':
         console.log('Encerrando o sistema...');
