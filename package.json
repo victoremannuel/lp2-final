@@ -1,0 +1,19 @@
+{
+  "name": "lp2-final",
+  "version": "1.0.0",
+  "description": "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser npm init -y npm i typescript --save-dev npx tsc --init npm i -g ts-node npm i --save-dev @types/readline-sync npm i readline-sync npm i @types/readline-sync",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/readline-sync": "^1.4.8",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
