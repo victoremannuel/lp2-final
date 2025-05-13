@@ -115,6 +115,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
+    "lib": ["ES2020", "DOM"],
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "rootDir": "src",
