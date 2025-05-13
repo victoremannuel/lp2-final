@@ -17,4 +17,14 @@ export class LivroRepositorio extends RepositorioBase<Livro> {
   override listar(): Livro[] {
     return super.listar();
   }
+
+  buscarPorTitulo(titulo: string): Livro | undefined {
+    const { buscaRecursiva } = require('../utils/BuscaRecursiva');
+    return buscaRecursiva(this.listar(), 'titulo', titulo);
+  }
+
+  buscarPorId(id: number): Livro | undefined {
+    const { buscaRecursiva } = require('../utils/BuscaRecursiva');
+    return buscaRecursiva(this.listar(), 'id', id);
+  }
 }

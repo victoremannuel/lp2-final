@@ -193,6 +193,8 @@ function main() {
     console.log('5 - Consultar Acervo');
     console.log('6 - Backup de Dados');
     console.log('7 - Restaurar Backup');
+    console.log('8 - Buscar Livro por Título');
+    console.log('9 - Buscar Livro por ID');
     console.log('0 - Sair');
     option = readline.question('Escolha uma opcao: ');
 
@@ -217,6 +219,24 @@ function main() {
         break;
       case '7':
         restaurarBackup();
+        break;
+      case '8':
+        const termo = readline.question('Digite o título do livro a buscar: ');
+        const resultado = livroRepo.buscarPorTitulo(termo);
+        if (resultado) {
+          console.log(`Encontrado: ${resultado.titulo} - ${resultado.autor}`);
+        } else {
+          console.log('Livro não encontrado.');
+        }
+        break;
+      case '9':
+        const idBusca = Number(readline.question('Digite o ID do livro a buscar: '));
+        const livroEncontrado = livroRepo.buscarPorId(idBusca);
+        if (livroEncontrado) {
+          console.log(`Encontrado: ${livroEncontrado.titulo} - ${livroEncontrado.autor}`);
+        } else {
+          console.log('Livro não encontrado.');
+        }
         break;
       case '0':
         console.log('Encerrando o sistema...');
