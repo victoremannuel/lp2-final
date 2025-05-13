@@ -101,7 +101,7 @@ npm run start
 
 ---
 
-## configurar projeto TS
+<!-- ## configurar projeto TS
 ```
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 npm init -y
@@ -123,4 +123,4 @@ Ainda no VSCode, acesse o menu File > Preferences > Settings e na caixa de bus
 Ainda em Settings e na caixa de busca digite: code-runner.executorMap e clique no link edit in settings como na imagem abaixo:
 ![alt text](image/README/image-1.png)
 No arquivo que settings.json, procure pela chave "typescript" e adicione o prefixo npx antes do comando ts-node, como na imagem abaixo. Depois salve (CTRL+S):
-![alt text](image/README/image-2.png)
+![alt text](image/README/image-2.png) -->
