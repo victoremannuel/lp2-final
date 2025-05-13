@@ -95,9 +95,9 @@ npm run start
 
 ### 7. Contribuidores
 
+* Anderson Félix de Araújo Júnior
+* Eduardo Oliveira Gomes da Silva
 * Víctor Emannuel de Souza Teixeira
-* Anderson
-* 
 
 ---
 

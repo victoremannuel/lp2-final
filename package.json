@@ -15,7 +15,7 @@
     "gerenciamento",
     "console"
   ],
-  "author": "Víctor Teixeira, Anderson",
+  "author": "Anderson Félix de Araújo Júnior, Eduardo Oliveira Gomes da Silva, Víctor Emannuel de Souza Teixeira",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.17.46",
