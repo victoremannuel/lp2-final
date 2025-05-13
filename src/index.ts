@@ -116,6 +116,19 @@ function realizarDevolucao(): void {
   console.log('Livro devolvido com sucesso!');
 }
 
+function consultarAcervo(): void {
+  console.log('== Acervo de Livros ==');
+  const livros = livroRepo.listar();
+
+  if (livros.length === 0) {
+    console.log('Nenhum livro cadastrado.');
+  } else {
+    livros.forEach(livro => {
+      console.log(`ID: ${livro.id} | Título: ${livro.titulo} | Autor: ${livro.autor} | Ano: ${livro.ano} | Categoria: ${livro.categoria}`);
+    });
+  }
+}
+
 function main() {
   let option = '';
   while (option !== '0') {
@@ -141,10 +154,10 @@ function main() {
         realizarEmprestimo();
         break;
       case '4':
-        console.log('-> Realizar Devolução');
+        realizarDevolucao();
         break;
       case '5':
-        console.log('-> Consultar Acervo');
+        consultarAcervo();
         break;
       case '6':
         console.log('-> Backup de Dados');
