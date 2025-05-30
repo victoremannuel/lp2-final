@@ -4,9 +4,8 @@
 
 * **Curso:** Engenharia de Computação
 * **Disciplina:** Linguagem de Programação 2
-* **Aluno:** \[Seu Nome Aqui]
-* **Período:** \[Informe aqui]
-* **Professor:** \[Informe aqui]
+* **Aluno:** Victor, Anderson, Eduardo
+* **Professor:** Adson
 * **Projeto:** Sistema de Gerenciamento de Biblioteca
 * **Linguagem:** TypeScript
 
