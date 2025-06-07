@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts",
+    "start": "node bin/index.js",
     "build": "tsc",
     "dev": "ts-node-dev --respawn src/index.ts"
   },
@@ -29,5 +29,10 @@
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.1.2",
     "typeorm": "^0.3.17"
+  },
+  "bin": "bin/index.js",
+  "pkg": {
+    "scripts": "bin/**/*.js",
+    "assets": "backup.json"
   }
 }
