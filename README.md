@@ -1,8 +1,10 @@
 # Documentação Técnica do Sistema de Gerenciamento de Biblioteca
 
-**Nome do Projeto:** Sistema de Biblioteca em TypeScript
-**Tecnologias Utilizadas:** TypeScript, Node.js, readline-sync, JSON, Decorators, POO
-**Camadas do Sistema:** Apresentação, Negócio, Dados
+**Nome do Projeto:** Sistema de Biblioteca em TypeScript<br>
+**Tecnologias Utilizadas:** TypeScript, Node.js, readline-sync, JSON, Decorators, POO<br>
+**Camadas do Sistema:** Apresentação, Negócio, Dados<br>
+**[Relatório](REPORT.md)**<br>
+**[Testes realizados](TESTES.md)**
 
 ---
 

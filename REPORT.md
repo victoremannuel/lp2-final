@@ -4,8 +4,11 @@
 
 * **Curso:** Engenharia de Computação
 * **Disciplina:** Linguagem de Programação 2
-* **Aluno:** Victor, Anderson, Eduardo
-* **Professor:** Adson
+* **Alunos:** 
+  * Anderson Félix de Araújo Júnior
+  * Eduardo Oliveira Gomes da Silva
+  * Víctor Emannuel de Souza Teixeira
+* **Professor:** Adson Rocha
 * **Projeto:** Sistema de Gerenciamento de Biblioteca
 * **Linguagem:** TypeScript
 
